@@ -11,14 +11,16 @@ class ModernUI:
     """Modern UI Framework with Material Design / Fluent Design principles"""
     
     # Modern Color Palette (Google Material Design inspired)
+    # Note: Some colors (primary_light, error, warning, body_bold) are defined for
+    # completeness and future use. This provides a full design system for developers.
     COLORS = {
         'primary': '#1a73e8',          # Google Blue
         'primary_dark': '#1557b0',     # Darker Blue
-        'primary_light': '#e8f0fe',    # Light Blue background
+        'primary_light': '#e8f0fe',    # Light Blue background (for future use)
         'accent': '#34a853',           # Google Green
         'accent_dark': '#2d8e47',      # Darker Green
-        'error': '#ea4335',            # Google Red
-        'warning': '#fbbc04',          # Google Yellow
+        'error': '#ea4335',            # Google Red (for future error states)
+        'warning': '#fbbc04',          # Google Yellow (for future warnings)
         'background': '#ffffff',       # White
         'surface': '#f8f9fa',          # Light Gray
         'text_primary': '#202124',     # Dark Gray
@@ -33,7 +35,7 @@ class ModernUI:
         'heading2': ('Segoe UI', 18, 'bold'),
         'heading3': ('Segoe UI', 14, 'bold'),
         'body': ('Segoe UI', 11),
-        'body_bold': ('Segoe UI', 11, 'bold'),
+        'body_bold': ('Segoe UI', 11, 'bold'),  # For future emphasis use
         'caption': ('Segoe UI', 9),
         'button': ('Segoe UI', 10, 'bold'),
     }
