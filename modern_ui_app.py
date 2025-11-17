@@ -4,8 +4,7 @@ Focusing on: Clean aesthetics, proper spacing, modern colors, and intuitive user
 """
 
 import tkinter as tk
-from tkinter import ttk, messagebox
-import sys
+from tkinter import messagebox
 
 
 class ModernUI:
@@ -17,6 +16,7 @@ class ModernUI:
         'primary_dark': '#1557b0',     # Darker Blue
         'primary_light': '#e8f0fe',    # Light Blue background
         'accent': '#34a853',           # Google Green
+        'accent_dark': '#2d8e47',      # Darker Green
         'error': '#ea4335',            # Google Red
         'warning': '#fbbc04',          # Google Yellow
         'background': '#ffffff',       # White
@@ -48,6 +48,12 @@ class ModernUI:
         'xxl': 48,
     }
     
+    # Common Placeholders
+    PLACEHOLDERS = {
+        'name': 'Enter your name',
+        'email': 'your.email@example.com',
+    }
+    
     @staticmethod
     def create_button(parent, text, command=None, style='primary', width=None):
         """Create a modern styled button"""
@@ -58,7 +64,7 @@ class ModernUI:
         elif style == 'accent':
             bg = ModernUI.COLORS['accent']
             fg = '#ffffff'
-            hover_bg = '#2d8e47'
+            hover_bg = ModernUI.COLORS['accent_dark']
         elif style == 'secondary':
             bg = ModernUI.COLORS['surface']
             fg = ModernUI.COLORS['text_primary']
@@ -258,14 +264,14 @@ class ModernApplication:
         name_label = ModernUI.create_label(form_content, "Name:", style='body')
         name_label.pack(anchor='w', pady=(ModernUI.SPACING['sm'], ModernUI.SPACING['xs']))
         
-        name_frame, self.name_entry = ModernUI.create_entry(form_content, placeholder="Enter your name")
+        name_frame, self.name_entry = ModernUI.create_entry(form_content, placeholder=ModernUI.PLACEHOLDERS['name'])
         name_frame.pack(fill=tk.X, pady=(0, ModernUI.SPACING['sm']))
         
         # Email field
         email_label = ModernUI.create_label(form_content, "Email:", style='body')
         email_label.pack(anchor='w', pady=(ModernUI.SPACING['sm'], ModernUI.SPACING['xs']))
         
-        email_frame, self.email_entry = ModernUI.create_entry(form_content, placeholder="your.email@example.com")
+        email_frame, self.email_entry = ModernUI.create_entry(form_content, placeholder=ModernUI.PLACEHOLDERS['email'])
         email_frame.pack(fill=tk.X, pady=(0, ModernUI.SPACING['sm']))
         
         # Message field
@@ -396,16 +402,12 @@ class ModernApplication:
         email = self.email_entry.get()
         message = self.message_text.get("1.0", tk.END).strip()
         
-        # Get placeholder text
-        name_placeholder = "Enter your name"
-        email_placeholder = "your.email@example.com"
-        
         # Check if fields are empty or contain placeholder text
-        if not name or name == name_placeholder:
+        if not name or name == ModernUI.PLACEHOLDERS['name']:
             messagebox.showwarning("Validation Error", "Please enter your name.")
             return
         
-        if not email or email == email_placeholder:
+        if not email or email == ModernUI.PLACEHOLDERS['email']:
             messagebox.showwarning("Validation Error", "Please enter your email.")
             return
         
@@ -424,11 +426,11 @@ class ModernApplication:
     def on_clear(self):
         """Handle clear button click"""
         self.name_entry.delete(0, tk.END)
-        self.name_entry.insert(0, "Enter your name")
+        self.name_entry.insert(0, ModernUI.PLACEHOLDERS['name'])
         self.name_entry.config(fg=ModernUI.COLORS['text_secondary'])
         
         self.email_entry.delete(0, tk.END)
-        self.email_entry.insert(0, "your.email@example.com")
+        self.email_entry.insert(0, ModernUI.PLACEHOLDERS['email'])
         self.email_entry.config(fg=ModernUI.COLORS['text_secondary'])
         
         self.message_text.delete("1.0", tk.END)
